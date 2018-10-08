@@ -1,275 +1,289 @@
-<!DOCTYPE html>
-<html>
+<!doctype html>
+<html class="no-js" lang="">
+
 <head>
-  <meta charset="UTF-8">
-  <title>Todo App<title>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title></title>
+  <meta name="description" content="">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <link rel="apple-touch-icon" href="icon.png">
+  <!-- Place favicon.ico in the root directory -->
 </head>
+
 <body>
-<div class="main">
-	<div class="content">
-		<div class="c-task">
-			<h2>Todo List </h2>
-			<input id="taskInput" type="text" placeholder="Enter task name" >
-			<div class="c-taskList">
-				<ul id="taskUl"></ul>
-				<ul id="footer">
-					<li>All <span id="all-task">0</span></li>
-					<li>Active <span id="all-active">0</span></li>
-					<li>Completed <span id="all-completed">0</span></li>
-				</ul>
+  <!--[if lte IE 9]>
+    <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+  <![endif]-->
+	<div class="main">
+		<div class="content">
+			<div class="c-task">
+				<h2>Todo List </h2>
+				<input id="taskInput" type="text" placeholder="Enter task name" >
+				<div class="c-taskList">
+					<ul id="taskUl"></ul>
+					<ul id="footer">
+						<li>All <span id="all-task">0</span></li>
+						<li>Active <span id="all-active">0</span></li>
+						<li>Completed <span id="all-completed">0</span></li>
+					</ul>
+				</div>
 			</div>
 		</div>
 	</div>
-</div>
 
-<style>
+	<style>
 
-	* {
-		margin: 0px;
-		padding: 0px;
-	}
-
-	.main {
-		background-color:#16253F;
-		height: 100vh;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-	}
-
-	.content {
-		width: 90%;
-		max-width: 600px;
-	}
-
-	.c-task input.li-text {
-		height: 60px;
-		border: none;
-		background-color: #f2f2f2;
-		width: 100%;
-		padding: 10px 50px;
-		font-size: 20px;
-		outline: none;
-		text-transform: capitalize;
-		color:#16253F;
-	}
-
-	.c-task input.li-text:focus {
-		background-color:#cbc4c4;
-	}
-
-	#taskInput {
-		height: 60px;
-		border : 1px solid ghostwhite;
-		background-color: silver;
-		width: 100%;
-		padding: 10px;
-		font-size: 20px;
-	}
-
-	h2 {
-		text-transform: uppercase;;
-		font-style: italic;
-		font-family: fantasy;
-		text-align: center;
-		color: #f2f2f2;
-		font-weight: 400;
-		font-size: 28px;
-		margin: 0px 0px 20px;
-		letter-spacing: .1em;
-	}
-
-	#taskUl {
-		max-height: 600px;
-		overflow: auto;
-	}
-
-
-	.c-task li {
-		list-style: none;
-		position: relative;
-		border-bottom:1px solid #eae9e9;
-	}
-
-	.c-task li:last-child{
-		border-bottom: none;
-	}
-
-	.removeTask {
-	    position: absolute;
-	    right: 0px;
-	    top: 0px;
-	    font-size: 20px;
-	    font-family: sans-serif;
-	    color: #a6a4a4;
-	    cursor: pointer;
-	    height: 100%;
-	    width: 40px;
-	    text-align: center;
-	    line-height: 60px;
-	}
-
-	.list-circle {
-	    position: absolute;
-	    width: 50px;
-	    height: 100%;
-	    left: 0;
-		display: flex;
-    	align-items: center;
-    	justify-content: center;
-	}
-
-	.list-circle  label {
-		width: 15px;
-	    height: 15px;
-	    background: #c7d8c8;
-	    display: block;
-	    border-radius: 50%;
-	    border: 4px solid #c7d8c8;
-	    cursor: pointer;
-	}
-
-	.list-circle input {
-		position: absolute;
-		opacity: 0;
-		width: 23px;
-		height: 23px;
-		cursor: pointer;
-	}
-
-	.list-circle input[type=checkbox]:checked + label {
-		background: green;
-	}
-
-	#footer {
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		background-color: #f4f4f4;
-		padding: 10px;
-		display: none;
-		border-top: 1px solid #fffbfb;
-	}
-
-	#footer li {
-		border: none;
-		color: #333;
-		flex: 1;
-		text-align: center;
-		font-style: italic;
-    	font-family: fantasy;
-	}
-
-
-	#taskUl li.task-completed  input.li-text{
-		background-color: #6b7d6b;
-		text-decoration: line-through;
-		text-decoration-color: green;
-		color: #a6a4a4;
-	}
-
-</style>
-
-<script>
-	var el = document.querySelector('#taskInput');
-	var ul = document.querySelector('#taskUl');
-	var footer = document.querySelector('#footer');
-	var allTask = 0;
-	var completedTask = 0;
-	var activeTask = 0;
-
-	var myTodo = [];
-
-	el.addEventListener('keyup', function(e){
-		if( e.keyCode == 13 && el.value.length > 0){
-			var taskName = el.value;
-			console.log(taskName);
-			el.value = "";
-			addItem(taskName);
+		* {
+			margin: 0px;
+			padding: 0px;
 		}
-	});
+
+		.main {
+			background-color:#16253F;
+			height: 100vh;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.content {
+			width: 90%;
+			max-width: 600px;
+		}
+
+		.c-task input.li-text {
+			height: 60px;
+			border: none;
+			background-color: #f2f2f2;
+			width: 100%;
+			padding: 10px 50px;
+			font-size: 20px;
+			outline: none;
+			text-transform: capitalize;
+			color:#16253F;
+		}
+
+		.c-task input.li-text:focus {
+			background-color:#cbc4c4;
+		}
+
+		#taskInput {
+			height: 60px;
+			border : 1px solid ghostwhite;
+			background-color: silver;
+			width: 100%;
+			padding: 10px;
+			font-size: 20px;
+		}
+
+		h2 {
+			text-transform: uppercase;;
+			font-style: italic;
+			font-family: fantasy;
+			text-align: center;
+			color: #f2f2f2;
+			font-weight: 400;
+			font-size: 28px;
+			margin: 0px 0px 20px;
+			letter-spacing: .1em;
+		}
+
+		#taskUl {
+			max-height: 600px;
+			overflow: auto;
+		}
 
 
-	// Add tasks in li items
-	function addItem(text){
-		var li = document.createElement("li");
-		ul.appendChild(li);
-		li.innerHTML = '<div class="list-circle"><input type="checkbox" id="list-num"><label for="list-num"></label></div><input type="text" class="li-text" disabled><span class="removeTask">X</span>';
+		.c-task li {
+			list-style: none;
+			position: relative;
+			border-bottom:1px solid #eae9e9;
+		}
 
-		var removeTask = li.querySelector('.removeTask');
-		removeTask.addEventListener('click', function(e){
-			removeTask.parentNode.remove();
-			allTask--;
-			console.log(allTask);
-			if(allTask < 1){
-				footer.style.display = "none";
+		.c-task li:last-child{
+			border-bottom: none;
+		}
+
+		.removeTask {
+			position: absolute;
+			right: 0px;
+			top: 0px;
+			font-size: 20px;
+			font-family: sans-serif;
+			color: #a6a4a4;
+			cursor: pointer;
+			height: 100%;
+			width: 40px;
+			text-align: center;
+			line-height: 60px;
+		}
+
+		.list-circle {
+			position: absolute;
+			width: 50px;
+			height: 100%;
+			left: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+		}
+
+		.list-circle  label {
+			width: 15px;
+			height: 15px;
+			background: #c7d8c8;
+			display: block;
+			border-radius: 50%;
+			border: 4px solid #c7d8c8;
+			cursor: pointer;
+		}
+
+		.list-circle input {
+			position: absolute;
+			opacity: 0;
+			width: 23px;
+			height: 23px;
+			cursor: pointer;
+		}
+
+		.list-circle input[type=checkbox]:checked + label {
+			background: green;
+		}
+
+		#footer {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			background-color: #f4f4f4;
+			padding: 10px;
+			display: none;
+			border-top: 1px solid #fffbfb;
+		}
+
+		#footer li {
+			border: none;
+			color: #333;
+			flex: 1;
+			text-align: center;
+			font-style: italic;
+			font-family: fantasy;
+		}
+
+
+		#taskUl li.task-completed  input.li-text{
+			background-color: #6b7d6b;
+			text-decoration: line-through;
+			text-decoration-color: green;
+			color: #a6a4a4;
+		}
+
+	</style>
+
+	<script>
+		var el = document.querySelector('#taskInput');
+		var ul = document.querySelector('#taskUl');
+		var footer = document.querySelector('#footer');
+		var allTask = 0;
+		var completedTask = 0;
+		var activeTask = 0;
+
+		var myTodo = [];
+
+		el.addEventListener('keyup', function(e){
+			if( e.keyCode == 13 && el.value.length > 0){
+				var taskName = el.value;
+				console.log(taskName);
+				el.value = "";
+				addItem(taskName);
 			}
-			updateCount();
+		});
+
+
+		// Add tasks in li items
+		function addItem(text){
+			var li = document.createElement("li");
+			ul.appendChild(li);
+			li.innerHTML = '<div class="list-circle"><input type="checkbox" id="list-num"><label for="list-num"></label></div><input type="text" class="li-text" disabled><span class="removeTask">X</span>';
+
+			var removeTask = li.querySelector('.removeTask');
+			removeTask.addEventListener('click', function(e){
+				removeTask.parentNode.remove();
+				allTask--;
+				console.log(allTask);
+				if(allTask < 1){
+					footer.style.display = "none";
+				}
+				updateCount();
+				footerCounter();
+			});
+
+			var liText =  li.querySelector('.li-text');
+				liText.value = text;
+
+			li.ondblclick = updateText;
+			li.onclick = checkBox;
+			allTask++;
+
+			if(allTask > 0){
+				footer.style.display = "flex";
+
+			}
+
 			footerCounter();
-		});
+		}
 
-		var liText =  li.querySelector('.li-text');
-			liText.value = text;
 
-		li.ondblclick = updateText;
-		li.onclick = checkBox;
-		allTask++;
+		// Update text on double click
 
-		if(allTask > 0){
-			footer.style.display = "flex";
+		function updateText(){
+			var updateTask = this.querySelector('.li-text')
+			updateTask.removeAttribute('disabled');
+
+			updateTask.addEventListener('keyup', function(e){
+				if(e.keyCode == 13 && this.value.length > 0) {
+					this.setAttribute('disabled' ,'true');
+				}
+			})
+		}
+
+		// Strike text on checked state
+
+		function checkBox(){
+			var checkbox = this.querySelector("#list-num");
+			checkbox.addEventListener('change', function(e){
+				if(this.checked == true) {
+					this.parentNode.parentNode.classList.add('task-completed');
+					updateCount();
+					console.log(completedTask);
+					footerCounter();
+				}
+				else {
+					this.parentNode.parentNode.classList.remove('task-completed');
+					updateCount();
+					console.log(completedTask);
+					footerCounter();
+				}
+			});
+		}
+
+		function updateCount(){
+			completedTask = ul.querySelectorAll('.task-completed').length;
+		}
+
+		//  Footer counter
+		function footerCounter(){
+			activeTask = allTask - completedTask;
+			footer.querySelector('#all-task').innerHTML =  allTask;
+			footer.querySelector('#all-active').innerHTML =  activeTask;
+			footer.querySelector('#all-completed').innerHTML =  completedTask;
 
 		}
 
-		footerCounter();
-	}
+	</script>
 
-
-	// Update text on double click
-
-	function updateText(){
-		var updateTask = this.querySelector('.li-text')
-		updateTask.removeAttribute('disabled');
-
-		updateTask.addEventListener('keyup', function(e){
-			if(e.keyCode == 13 && this.value.length > 0) {
-				this.setAttribute('disabled' ,'true');
-			}
-		})
-	}
-
-	// Strike text on checked state
-
-	function checkBox(){
-		var checkbox = this.querySelector("#list-num");
-		checkbox.addEventListener('change', function(e){
-			if(this.checked == true) {
-				this.parentNode.parentNode.classList.add('task-completed');
-				updateCount();
-				console.log(completedTask);
-				footerCounter();
-			}
-			else {
-				this.parentNode.parentNode.classList.remove('task-completed');
-				updateCount();
-				console.log(completedTask);
-				footerCounter();
-			}
-		});
-	}
-
-	function updateCount(){
-		completedTask = ul.querySelectorAll('.task-completed').length;
-	}
-
-	//  Footer counter
-	function footerCounter(){
-		activeTask = allTask - completedTask;
-		footer.querySelector('#all-task').innerHTML =  allTask;
-		footer.querySelector('#all-active').innerHTML =  activeTask;
-		footer.querySelector('#all-completed').innerHTML =  completedTask;
-
-	}
-
-</script>
 </body>
+
 </html>
+
